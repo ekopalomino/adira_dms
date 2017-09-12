@@ -1,0 +1,14 @@
+diff --git a/download.module b/download.module
+index 43804f0..6f98ffb 100755
+--- a/download.module
++++ b/download.module
+@@ -253,7 +253,8 @@ function download_download($bundle, $field_info) {
+ 
+   $field_name = 'download';
+   $files = array();
+-  $entity = array_shift(entity_load($entity_type, array($id)));
++  $entity_array = entity_load($entity_type, array($id));
++  $entity = array_shift($entity_array);
+ 
+   $lib_path = libraries_get_path('pclzip');
+   if (!is_dir($lib_path)) {
