@@ -1107,9 +1107,11 @@ function invoice_view_pdf($invoice_number) {
     $dompdf->load_html($html);
     // @todo: Make configurable
     $dompdf->set_paper('A4');
-
+	
     $dompdf->render();
-    $dompdf->stream(t('invoice') . '-' . $node->invoice['formatted_invoice_number'] . ".pdf", array('Attachment' => 1));
+	$output = $dompdf->output();
+	file_put_contents('sites/default/files/'.$node->invoice['formatted_invoice_number'] . ".pdf", $output);
+    // $dompdf->stream(t('invoice') . '-' . $node->invoice['formatted_invoice_number'] . ".pdf", array('Attachment' => 1));
     exit;
   }
 }
